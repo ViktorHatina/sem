@@ -325,14 +325,16 @@ public class App {
 
         // Connect to database
         if (args.length < 1) {
-            a.connect("localhost:3306", 30000);
+            a.connect("localhost:33060", 0);
         } else {
-            a.connect(args[0], Integer.parseInt(args[1]));
+            a.connect("db:3306", 30000);
         }
 
+
         //Print all salaries by departmen
-        ArrayList<Employee> employees = a.getSalariesByDepartment("Sales");
-        //ArrayList<Employee> employees = a.getSalariesByTitle("Engineer");
+        //ArrayList<Employee> employees = a.getSalariesByDepartment("Sales");
+        ArrayList<Employee> employees = a.getSalariesByTitle("Engineer");
+        //ArrayList<Employee> employees = a.getSalariesByDepartment("Development");
         a.printSalaries(employees);
 
         a.disconnect();
