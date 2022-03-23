@@ -330,8 +330,9 @@ public class App {
             a.connect(args[0], Integer.parseInt(args[1]));
         }
 
-        //Print all salaries by department
+        //Print all salaries by departmen
         ArrayList<Employee> employees = a.getSalariesByDepartment("Sales");
+        //ArrayList<Employee> employees = a.getSalariesByTitle("Engineer");
         a.printSalaries(employees);
 
         a.disconnect();
