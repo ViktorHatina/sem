@@ -25,4 +25,30 @@ public class AppIntegrationTest
         assertEquals(emp.first_name, "Ronghao");
         assertEquals(emp.last_name, "Garigliano");
     }
+
+    @Test
+    void testDisplayEmployee()
+    {
+
+    }
+
+    @Test
+    void testGetAllSalaries()
+    {
+
+    }
+
+    @Test
+    void testGetSalariesByRole()
+    {
+
+    }
+
+    @Test
+    void testGetSalariesByDept()
+    {
+
+    }
+
+
 }
