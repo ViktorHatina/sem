@@ -34,22 +34,15 @@ jobs:
         with:
           java-version: '11'
           distribution: 'adopt'
-      - name: Integration Tests and CodeCov
+      - name: Integration Tests
         run: |
           docker build -t database ./db 
           docker run --name employees -dp 33060:3306 database
-          mvn -Dtest=com.napier.sem.AppIntegrationTest test          
+          mvn -Dtest=com.napier.sem.AppIntegrationTest test
           docker stop employees
           docker rm employees
-          docker image rm database
-      - name: CodeCov
-        uses: codecov/codecov-action@v2
-        with:
-          # token 64b26f13-8eb6-40ea-8643-ea83cc5eeb02: ${{ secrets.CODECOV_TOKEN }} # not required for public repos
-          CODECOV_TOKEN='64b26f13-8eb6-40ea-8643-ea83cc5eeb02'
-          directory: ./target/site/jacoco
-          flags: Integration Tests # optional
-          verbose: true # optional (default = false)
+          docker image rm database                    
+
   build:
     name: Build and Start Using docker-compose
     runs-on: ubuntu-20.04

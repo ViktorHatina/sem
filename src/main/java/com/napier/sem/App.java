@@ -32,16 +32,13 @@ public class App {
                 // Wait a bit for db to start
                 Thread.sleep(delay);
                 // Connect to database
-                //Added allowPublicKeyRetrieval=true to get Integration Tests to work. Possibly
-                // due to accessing from another class?
-                con = DriverManager.getConnection("jdbc:mysql://"
-                                + "db:3306"
+                con = DriverManager.getConnection("jdbc:mysql://" + location
                                 + "/employees?allowPublicKeyRetrieval=true&useSSL=false",
                         "root", "example");
                 System.out.println("Successfully connected");
                 break;
             } catch (SQLException sqle) {
-                System.out.println("Failed to connect to database attempt " + i);
+                System.out.println("Failed to connect to database attempt " +                                  Integer.toString(i));
                 System.out.println(sqle.getMessage());
             } catch (InterruptedException ie) {
                 System.out.println("Thread interrupted? Should not happen.");
@@ -318,27 +315,24 @@ public class App {
     }
 
 
-    public static void main(String[] args)
-    {
+    public static void main(String[] args) {
         // Create new Application and connect to database
         App a = new App();
 
-        // Connect to database
-        if (args.length < 1) {
-            a.connect("localhost:33060", 0);
-        } else {
-            a.connect("db:3306", 30000);
+        if(args.length < 1){
+            a.connect("localhost:33060", 30000);
+        }else{
+            a.connect(args[0], Integer.parseInt(args[1]));
         }
 
+        //Department dept = a.getDepartment("Development");
+        ArrayList<Employee> employees = a.getSalariesByDepartment("Sales");
 
-        //Print all salaries by departmen
-        //ArrayList<Employee> employees = a.getSalariesByDepartment("Sales");
-        ArrayList<Employee> employees = a.getSalariesByTitle("Engineer");
-        //ArrayList<Employee> employees = a.getSalariesByDepartment("Development");
+
+        // Print salary report
         a.printSalaries(employees);
 
+        // Disconnect from database
         a.disconnect();
-
-
     }
 }

@@ -2,6 +2,8 @@ package com.napier.sem;
 
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.TestInstance;
+import java.util.ArrayList;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -13,7 +15,7 @@ public class AppIntegrationTest
     static void init()
     {
         app = new App();
-        app.connect("localhost:33060", 30000);
+        app.connect("localhost:33060", 3000);
 
     }
 
@@ -25,30 +27,4 @@ public class AppIntegrationTest
         assertEquals(emp.first_name, "Ronghao");
         assertEquals(emp.last_name, "Garigliano");
     }
-
-    @Test
-    void testDisplayEmployee()
-    {
-
-    }
-
-    @Test
-    void testGetAllSalaries()
-    {
-
-    }
-
-    @Test
-    void testGetSalariesByRole()
-    {
-
-    }
-
-    @Test
-    void testGetSalariesByDept()
-    {
-
-    }
-
-
 }
